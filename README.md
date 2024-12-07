@@ -1,0 +1,1 @@
+curl -s https://raw.githubusercontent.com/gopi24/restaurant/main/setup.sh | bash
