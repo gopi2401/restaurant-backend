@@ -23,6 +23,7 @@
             command printf "${Red}Failed:${nc}clone project repo. Please report this!\n"
             exit 2
         }
+        command cd restaurant-backend && npm i
     }
 
     project_setup
