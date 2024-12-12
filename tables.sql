@@ -10,7 +10,7 @@ CREATE TABLE orders (
     customer_name VARCHAR(255),     
     quantity INT NOT NULL,               
     price DECIMAL(10, 2) NOT NULL,       
-    status VARCHAR(50) DEFAULT 'Pending',
+    status VARCHAR(50) DEFAULT 'pending',
     created_at TIMESTAMP DEFAULT NOW(),
     updated_at TIMESTAMP DEFAULT NOW() 
 );
