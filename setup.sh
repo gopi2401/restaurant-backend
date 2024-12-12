@@ -1,8 +1,24 @@
-#!/usr/bin/env bash
-echo "Hello World!"
+#!/bin/bash
 
-# apt install nodejs
-apt-get install unzip
-curl -L -o restaurant-backend-test.zip https://github.com/gopi2401/restaurant-backend/archive/refs/tags/test.zip
-unzip restaurant-backend-test.zip.zip -d ./
-cd restaurant-backend-test.zip
+{
+    green='\033[0;32m'
+    nc='\033[0m' # No Color
+    # title design
+    command printf "${green}************************************\n"
+    command printf "*         Backend Setup            *\n"
+    command printf "************************************${nc}\n"
+    command pkg update && pkg upgrade
+    command pkg install -y git nodejs
+    # mysql(){
+    #     command
+    # }
+
+    project_setup() {
+        command git clone https://github.com/gopi401/restaurant-backend || {
+            command printf 'Failed to clone project repo. Please report this!'
+            exit 2
+        }
+    }
+
+    project_setup
+}
