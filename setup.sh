@@ -8,11 +8,10 @@
     command printf "${green}************************************\n"
     command printf "*         Backend Setup            *\n"
     command printf "************************************${nc}\n"
-    command pkg update && pkg upgrade
-    # command pkg install -y git nodejs
+    command pkg update -y && pkg upgrade
 
     pkg_install() {
-        pkg_list=("git" "nodejs")
+        pkg_list=("git" "nodejs" "curl")
         for pkg_name in ${pkg_list[@]}; do
             if dpkg -s $pkg_name &>/dev/null; then
                 command printf "${green}$pkg_name is installed!${nc}\n"
@@ -51,28 +50,29 @@
 
     project_env_file() {
         # Prompt user for the URL
-        command printf "Enter the host url:"
-        command read HOST
-        command printf "Enter the user name:"
-        command read USER
-        command printf "Enter the password:"
-        command read PASSWORD
-        command printf "Enter the database name:"
-        command read DATABASE
+        command printf "Enter the host URL: "
+        command read -r HOST
+        command printf "Enter the username: "
+        command read -r USER
+        command printf "Enter the password: "
+        command read -r PASSWORD
+        command printf "Enter the database name: "
+        command read -r DATABASE
 
-        # Fetch data using curl and save it to the file
-        command ENV="HOST=$HOST
-        USER=$USER
-        PASSWORD=$PASSWORD
-        DATABASE=$DATABASE"
-        command printf "$ENV"
-        command curl -s "$ENV" -o ".env"
+        # Create the .env content
+        ENV="HOST=$HOST
+USER=$USER
+PASSWORD=$PASSWORD
+DATABASE=$DATABASE"
+
+        # Save the content to a .env file
+        echo "$ENV" >.env
 
         # Check if the file was created successfully
         if [ $? -eq 0 ]; then
-            command printf "Saved file $filename successfully."
+            command printf "Saved file '.env' successfully.\n"
         else
-            command printf "Can't file save!"
+            command printf "Failed to save the '.env' file!\n"
         fi
     }
 
