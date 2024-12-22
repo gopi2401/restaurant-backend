@@ -51,12 +51,12 @@
     project_env_file() {
         # Prompt user for the URL
         command printf "Enter the host URL: " &&
-            command read -r HOST
-        command printf "Enter the username: " &&
-            command read -r USER
-        command printf "Enter the password: " &&
-            command read -r PASSWORD
-        command printf "Enter the database name: " &&
+            command read -r HOST &&
+            command printf "Enter the username: " &&
+            command read -r USER &&
+            command printf "Enter the password: " &&
+            command read -r PASSWORD &&
+            command printf "Enter the database name: " &&
             command read -r DATABASE
 
         # Create the .env content
@@ -76,7 +76,7 @@ DATABASE=$DATABASE"
         fi
     }
 
-    pkg_install
-    project_setup
+    # pkg_install
+    # project_setup
     project_env_file
 }
