@@ -58,7 +58,7 @@
 
     # Prompt user for the URL
     command printf "Enter the host URL: " &&
-        command read -r HOST &&
+        command read HOST &&
         command printf "Enter the username: " &&
         command read -r USER &&
         command printf "Enter the password: " &&
@@ -67,10 +67,8 @@
         command read -r DATABASE
 
     # Create the .env content
-    ENV="HOST=$HOST
-USER=$USER
-PASSWORD=$PASSWORD
-DATABASE=$DATABASE"
+    ENV="HOST=$HOST USER=$USER PASSWORD=$PASSWORD DATABASE=$DATABASE"
+    printf $ENV
 
     # Save the content to a .env file
     echo "$ENV" >.env
