@@ -50,5 +50,4 @@
 
     pkg_install
     project_setup
-    project_env_file
 }
