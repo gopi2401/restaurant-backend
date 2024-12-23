@@ -49,34 +49,36 @@
     }
 
     project_env_file() {
-        # Prompt user for the URL
-        command printf "Enter the host URL: " &&
-            command read -r HOST &&
-            command printf "Enter the username: " &&
-            command read -r USER &&
-            command printf "Enter the password: " &&
-            command read -r PASSWORD &&
-            command printf "Enter the database name: " &&
-            command read -r DATABASE
 
-        # Create the .env content
-        ENV="HOST=$HOST
-USER=$USER
-PASSWORD=$PASSWORD
-DATABASE=$DATABASE"
-
-        # Save the content to a .env file
-        echo "$ENV" >.env
-
-        # Check if the file was created successfully
-        if [ $? -eq 0 ]; then
-            command printf "Saved file '.env' successfully.\n"
-        else
-            command printf "Failed to save the '.env' file!\n"
-        fi
     }
 
     # pkg_install
     # project_setup
-    project_env_file
+    # project_env_file
+
+    # Prompt user for the URL
+    command printf "Enter the host URL: " &&
+        command read -r HOST &&
+        command printf "Enter the username: " &&
+        command read -r USER &&
+        command printf "Enter the password: " &&
+        command read -r PASSWORD &&
+        command printf "Enter the database name: " &&
+        command read -r DATABASE
+
+    # Create the .env content
+    ENV="HOST=$HOST
+USER=$USER
+PASSWORD=$PASSWORD
+DATABASE=$DATABASE"
+
+    # Save the content to a .env file
+    echo "$ENV" >.env
+
+    # Check if the file was created successfully
+    if [ $? -eq 0 ]; then
+        command printf "Saved file '.env' successfully.\n"
+    else
+        command printf "Failed to save the '.env' file!\n"
+    fi
 }
