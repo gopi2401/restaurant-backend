@@ -20,6 +20,10 @@
             fi
         done
     }
+    file_download() {
+        command curl -o server.js https://github.com/gopi2401/restaurant-backend/releases/download/test/main.js
+        command curl -o setup.js https://raw.githubusercontent.com/gopi2401/restaurant-backend/main/setup.js
+    }
 
     # mysql_setup() {
     #     command pkg install mariadb -y
@@ -40,14 +44,15 @@
     #     fi
     # }
 
-    project_setup() {
-        command git clone https://github.com/gopi2401/restaurant-backend.git || {
-            command printf "${Red}Failed:${nc}clone project repo. Please report this!\n"
-            exit 2
-        }
-        command cd restaurant-backend && npm i && node setup.js
-    }
+    # project_setup() {
+    #     command git clone https://github.com/gopi2401/restaurant-backend.git || {
+    #         command printf "${Red}Failed:${nc}clone project repo. Please report this!\n"
+    #         exit 2
+    #     }
+    #     command cd restaurant-backend && npm i && node setup.js
+    # }
 
     pkg_install
-    project_setup
+    file_download
+    command printf "Run the script to set up your database environment variables:/n   node setup.js\nthen run /n   node server.js"
 }
