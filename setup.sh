@@ -49,7 +49,14 @@
     }
 
     project_env_file() {
-
+        command printf "Enter the host URL: " &&
+            command read HOST &&
+            command printf "Enter the username: " &&
+            command read -r USER &&
+            command printf "Enter the password: " &&
+            command read -r PASSWORD &&
+            command printf "Enter the database name: " &&
+            command read -r DATABASE
     }
 
     # pkg_install
