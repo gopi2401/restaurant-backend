@@ -40,9 +40,9 @@ function setupDatabase() {
 // Main setup function
 function main() {
   console.log("Starting project setup...");
-  installDependencies();
+  // installDependencies();
   setupEnvironment();
-  setupDatabase();
+  // setupDatabase();
   console.log("Project setup complete. You're ready to go!");
 }
 
