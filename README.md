@@ -47,7 +47,7 @@ nano ~/.bashrc
 2. Add the following line at the end of the file:
 
 ```bash
-node server.js
+node --env-file .env server.js
 ```
 
 3. Save and exit:

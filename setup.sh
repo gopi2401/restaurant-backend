@@ -54,5 +54,5 @@
 
     pkg_install
     file_download
-    command printf "Run the script to set up your database environment variables:/n   node setup.js\nthen run /n   node server.js"
+    command printf "\n\nRun the script to set up your database environment variables:\n   node setup.js\nthen run \n   node --env-file .env server.js"
 }
