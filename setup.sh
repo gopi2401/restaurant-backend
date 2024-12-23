@@ -45,22 +45,10 @@
             command printf "${Red}Failed:${nc}clone project repo. Please report this!\n"
             exit 2
         }
-        command cd restaurant-backend && npm i
+        command cd restaurant-backend && npm i && node setup.js
     }
 
-    project_env_file() {
-        command printf "Enter the host URL: " &&
-            command read HOST &&
-            command printf "Enter the username: " &&
-            command read -r USER &&
-            command printf "Enter the password: " &&
-            command read -r PASSWORD &&
-            command printf "Enter the database name: " &&
-            command read -r DATABASE
-    }
-
-    # pkg_install
-    # project_setup
-    # project_env_file
-    command curl -s https://raw.githubusercontent.com/gopi2401/restaurant-backend/refs/heads/main/setup.js | node
+    pkg_install
+    project_setup
+    project_env_file
 }
