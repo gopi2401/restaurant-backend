@@ -45,6 +45,35 @@ const orderAndItemsGetAll = async (req, res) => {
   }
 };
 
+const orderCount = async (req, res) => {
+  try {
+    let orders = await Order.getCount();
+    res
+      .status(200)
+      .json({ message: "Order Count get successfully", data: orders });
+  } catch (e) {
+    res.status(500).json({ message: "internal server error" + e.message });
+  }
+};
+
+const orderQuantity = async (req, res) => {
+  try {
+    let data = await Order.getQuantity();
+    res.status(200).json({ message: "Order Quantity get successfully", data });
+  } catch (e) {
+    res.status(500).json({ message: "internal server error" + e.message });
+  }
+};
+
+const orderPrice = async (req, res) => {
+  try {
+    let data = await Order.getPrice();
+    res.status(200).json({ message: "Order Quantity get successfully", data });
+  } catch (e) {
+    res.status(500).json({ message: "internal server error" + e.message });
+  }
+};
+
 const orderGetById = async (req, res) => {
   try {
     const data = await Order.getOrderById(req.params.id);
@@ -80,6 +109,9 @@ module.exports = {
   orderCreate,
   orderGetAll,
   orderAndItemsGetAll,
+  orderCount,
+  orderQuantity,
+  orderPrice,
   orderGetById,
   orderUpdateById,
   orderDeleteById,

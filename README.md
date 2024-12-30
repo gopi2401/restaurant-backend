@@ -34,7 +34,7 @@ When prompted, enter the following details:
 
 <b>Database Name: </b>`restaurant`
 
-### 3.Configure Startup Script
+### 3.Configure Startup Script (optional)
 
 To ensure the server starts automatically when Termux launches:
 

@@ -32,5 +32,14 @@ CREATE TABLE menus (
     price DECIMAL(10, 2) NOT NULL,
     pic_url VARCHAR(2083)
 );
-BsXOrQRYct7oKCTIJSCp
+
+CREATE TABLE expenses (
+    id SERIAL PRIMARY KEY,        
+    name VARCHAR(255) NOT NULL,   
+    price DECIMAL(10, 2) NOT NULL,
+    pic_url VARCHAR(2083),
+    category VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW() 
+);
 

@@ -1,12 +1,12 @@
-const db = require('../config/db.config');
+const db = require("../config/db.config");
 
 const getAllOrder = async () => {
-    const [rows] = await db.query('SELECT * FROM orders');
-    return rows;
+  const [rows] = await db.query("SELECT * FROM orders");
+  return rows;
 };
 
 const getAllOrderAndItem = async () => {
-    const [rows] = await db.query(`
+  const [rows] = await db.query(`
     SELECT 
     o.*,
     JSON_ARRAYAGG(
@@ -31,43 +31,62 @@ ON
 GROUP BY 
     o.id;
 `);
-    return rows;
+  return rows;
 };
 
+const getCount = async () => {
+  const [rows] = await db.query("SELECT COUNT(id) AS orderCount FROM orders;");
+  return rows[0];
+};
+
+const getQuantity = async () => {
+  const [rows] = await db.query(
+    "SELECT SUM(quantity) AS orderQuantity FROM orders;"
+  );
+  return rows[0];
+};
+
+const getPrice = async () => {
+  const [rows] = await db.query("SELECT SUM(price) AS orderPrice FROM orders;");
+  return rows[0];
+};
 
 const getOrderById = async (id) => {
-    const [rows] = await db.query('SELECT * FROM orders WHERE id = ?', [id]);
-    return rows[0];
+  const [rows] = await db.query("SELECT * FROM orders WHERE id = ?", [id]);
+  return rows[0];
 };
 
 const createOrder = async (orderData) => {
-    const { customer_name, quantity, price, } = orderData;
-    const [result] = await db.query(
-        'INSERT INTO orders (customer_name, quantity, price) VALUES (?, ?, ?)',
-        [customer_name, quantity, price]
-    );
-    return result.insertId;
+  const { customer_name, quantity, price } = orderData;
+  const [result] = await db.query(
+    "INSERT INTO orders (customer_name, quantity, price) VALUES (?, ?, ?)",
+    [customer_name, quantity, price]
+  );
+  return result.insertId;
 };
 
 const updateOrder = async (id, status) => {
-    const updated_at = new Date()
-    const [result] = await db.query(
-        'UPDATE orders SET status = ?, updated_at = ? WHERE id = ?',
-        [status, updated_at, id]
-    );
-    return result.affectedRows;
+  const updated_at = new Date();
+  const [result] = await db.query(
+    "UPDATE orders SET status = ?, updated_at = ? WHERE id = ?",
+    [status, updated_at, id]
+  );
+  return result.affectedRows;
 };
 
 const deleteOrder = async (id) => {
-    const [result] = await db.query('DELETE FROM orders WHERE id = ?', [id]);
-    return result.affectedRows;
+  const [result] = await db.query("DELETE FROM orders WHERE id = ?", [id]);
+  return result.affectedRows;
 };
 
 module.exports = {
-    getAllOrder,
-    getAllOrderAndItem,
-    getOrderById,
-    createOrder,
-    updateOrder,
-    deleteOrder,
+  getAllOrder,
+  getAllOrderAndItem,
+  getCount,
+  getQuantity,
+  getPrice,
+  getOrderById,
+  createOrder,
+  updateOrder,
+  deleteOrder,
 };
