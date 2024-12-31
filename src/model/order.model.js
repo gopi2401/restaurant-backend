@@ -47,7 +47,9 @@ const getQuantity = async () => {
 };
 
 const getPrice = async () => {
-  const [rows] = await db.query("SELECT SUM(price) AS orderPrice FROM orders;");
+  const [rows] = await db.query(
+    "SELECT SUM(price) AS orderPrice FROM orders WHERE status = 'delivered';"
+  );
   return rows[0];
 };
 
