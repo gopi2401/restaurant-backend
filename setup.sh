@@ -8,7 +8,7 @@
     command printf "${green}************************************\n"
     command printf "*         Backend Setup            *\n"
     command printf "************************************${nc}\n"
-    command pkg update -y && pkg upgrade
+    command pkg update -y && pkg upgrade -y
 
     pkg_install() {
         pkg_list=("git" "nodejs" "curl")
@@ -54,5 +54,5 @@
 
     pkg_install
     file_download
-    command printf "\n\nRun the script to set up your database environment variables:\n   node setup.js\nthen run \n   node --env-file .env server.js"
+    command printf "\n\nRun the script to set up your database environment variables:\n   node setup.js\nthen run \n   node --env-file .env server.js\n"
 }
